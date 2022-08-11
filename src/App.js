@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import "./App.css";
 import Search from "./components/search";
-import Timezone from "./components/timezone";
+import TimezoneGroup from "./components/timezoneGroup";
+import moment from "moment-timezone";
 
 function App() {
+  const [zoneName, setZoneName] = useState(null);
   const addZone = (data) => {
     console.log(data);
     const cityName = data.replace(" ", "_");
-    const zoneName = cityName
-      .split("/")
-      .map((data) => data[0].toUpperCase() + data.substr(1).toLowerCase())
-      .join("/");
+    setZoneName(
+      cityName
+        .split("/")
+        .map((data) => data[0].toUpperCase() + data.substr(1).toLowerCase())
+        .join("/")
+    );
   };
 
   return (
     <div className="App">
       <h2>TIMEZONE CHECK</h2>
       <Search addZone={addZone} />
-      <Timezone addZone={function (e) {}} />
+      <TimezoneGroup zoneName={zoneName} />
     </div>
   );
 }
