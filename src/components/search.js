@@ -9,6 +9,7 @@ function Search(props) {
   console.log(timeZoneDb);
 
   const [input, setInput] = useState("");
+  const [matchValue, setMatchValue] = useState([]);
 
   const inputChange = (e) => {
     setInput(e.target.value);
@@ -17,13 +18,12 @@ function Search(props) {
     }
   };
 
-  let matchArray = [];
-
   const findMatches = (typeWord) => {
     const regex = new RegExp(typeWord, "gi");
-    matchArray = timeZoneDb
+    let matchArray = timeZoneDb
       .filter((timezone) => timezone.match(regex))
       .slice(0, 10);
+    setMatchValue(matchArray);
   };
 
   return (
@@ -37,7 +37,7 @@ function Search(props) {
       />
       <input type="submit" name="search" value="search" />
       <ul className="suggestionList">
-        <SuggestionList matchArray={matchArray} value={inputChange} />
+        <SuggestionList matchArray={matchValue} value={input} />
       </ul>
     </div>
   );
