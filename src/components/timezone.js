@@ -9,10 +9,11 @@ function Timezone({ zoneName, offset }) {
   };
 
   const getNow = () => {
-    return moment.tz({ zoneName }).format("HH:mm");
+    return moment.tz(zoneName).format("HH:mm");
   };
+
   const getToday = () => {
-    return moment.tz({ zoneName }).format("ddd, DD MMM");
+    return moment.tz(zoneName).format("ddd, DD MMM");
   };
 
   const getCountry = () => {
@@ -24,26 +25,27 @@ function Timezone({ zoneName, offset }) {
   };
 
   const getAbbr = () => {
-    return moment.tz({ zoneName }).format("z");
+    return moment.tz(zoneName).format("z");
   };
+
   const getOffset = () => {
-    return moment.tz({ zoneName }).format("Z").split(":").shift();
+    return moment.tz(zoneName).format("Z").split(":").shift();
   };
+
   // const remove = () => {
-  //   this.div.remove()
-  // };
+  //     this.div.remove()
+  // }
 
   // const timeUpdate = (time) => {
-  //   this.time = time
-  //   this.div.querySelector('.time').innerHTML = time
-  // };
+  //     this.time = time
+  //     this.div.querySelector('.time').innerHTML = time
+  // }
+
   return (
     <div className="timezoneList">
       <div className="timezoneComp">
         <div className="home">
-          {offset !== 0
-            ? offset
-            : '<img src="./../frontEnd/images/placeholder.svg" />'}
+          {offset !== 0 ? offset : <img src="images/placeholder.svg" alt="" />}
           <span className="makeHome">
             {offset === 0 ? (
               ""
@@ -51,7 +53,7 @@ function Timezone({ zoneName, offset }) {
               <img
                 className="makeHome"
                 data-city={zoneName}
-                src="./../frontEnd/images/home.svg"
+                src="images/home.svg"
                 alt=""
               />
             )}
