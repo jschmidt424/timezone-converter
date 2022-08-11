@@ -1,21 +1,16 @@
 import React from "react";
 import moment from "moment-timezone";
 
-function Timezone({ zoneName, offset }) {
-  console.log(zoneName, offset);
-
+function Timezone({ zoneName, offset, time }) {
   const getCity = () => {
     return zoneName.split("/").pop().replace("_", " ");
   };
-
   const getNow = () => {
     return moment.tz(zoneName).format("HH:mm");
   };
-
   const getToday = () => {
     return moment.tz(zoneName).format("ddd, DD MMM");
   };
-
   const getCountry = () => {
     let countryName = moment.tz.zone(zoneName).countries();
     if (countryName.length > 1) {
@@ -23,21 +18,18 @@ function Timezone({ zoneName, offset }) {
     }
     return countryName;
   };
-
   const getAbbr = () => {
     return moment.tz(zoneName).format("z");
   };
-
   const getOffset = () => {
     return moment.tz(zoneName).format("Z").split(":").shift();
   };
-
   // const remove = () => {
   //     this.div.remove()
   // }
 
   // const timeUpdate = (time) => {
-  //     this.time = time
+  //     time = time
   //     this.div.querySelector('.time').innerHTML = time
   // }
 
@@ -62,7 +54,9 @@ function Timezone({ zoneName, offset }) {
         <div className="timezone">
           <div className="timezone1">
             <span className="cityName homeCity">{getCity()}</span>
-            <span className="time homeTime">{getNow()}</span>
+            <span className="time homeTime">
+              {time === null ? getNow() : time}
+            </span>
           </div>
           <div className="timezone2">
             <span className="countryName homeCode">{getCountry()}</span>
@@ -83,5 +77,4 @@ function Timezone({ zoneName, offset }) {
     </div>
   );
 }
-
 export default Timezone;
