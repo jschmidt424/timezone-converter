@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import moment from "moment-timezone";
+import SuggestionList from "./suggestionList";
 
 function Search(props) {
   const timeZoneDb = Object.keys(moment.tz._zones)
@@ -35,7 +36,9 @@ function Search(props) {
         onChange={inputChange}
       />
       <input type="submit" name="search" value="search" />
-      <ul className="suggestionList"></ul>
+      <ul className="suggestionList">
+        <SuggestionList matchArray={matchArray} value={inputChange} />
+      </ul>
     </div>
   );
 }
