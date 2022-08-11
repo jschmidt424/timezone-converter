@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import moment from "moment-timezone";
 
-function Hour({ zoneName, offset, gmt }) {
+function Hour({ zoneName, offset, gmt, setTime }) {
   const getNow = () => {
     return parseInt(moment.tz(zoneName).format("HH"));
   };
@@ -31,13 +31,17 @@ function Hour({ zoneName, offset, gmt }) {
     let number = offset < 0 ? 24 + offset : offset;
     for (let i = 0; i < 24; i++) {
       hours.push(
-        <span className={`selectable ${getClass(i)}`}>
+        <span key={i} className={`selectable ${getClass(i)}`}>
           {i === 0 ? getToday() : i}
         </span>
       );
     }
     for (let i = 0; i < number; i++) {
-      hours.push(<span class={`selectable ${getClass(i)}`}>{getDate(i)}</span>);
+      hours.push(
+        <span key={i} class={`selectable ${getClass(i)}`}>
+          {getDate(i)}
+        </span>
+      );
     }
     return hours;
   };
@@ -68,15 +72,15 @@ function Hour({ zoneName, offset, gmt }) {
             returnZero(selected[selected.length - 1]) +
             ":00";
         }
-        // timeUpdate(time);
+        setTime(time);
       },
     });
   }, [div]);
 
   return (
     <div className="hoursList">
-      <div class="hoursComp">
-        <div class="day" ref={div}>
+      <div className="hoursComp">
+        <div className="day" ref={div}>
           {getHours()}
         </div>
       </div>

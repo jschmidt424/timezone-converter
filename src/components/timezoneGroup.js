@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Timezone from "./Timezone";
-import Hour from "./Hour";
+import Timezone from "./timezone";
+import Hour from "./hour";
 import moment from "moment-timezone";
 
 function TimezoneGroup({ zoneName }) {
@@ -31,8 +31,17 @@ function TimezoneGroup({ zoneName }) {
   return (
     zoneName && (
       <>
-        <Timezone zoneName={zoneName} offset={getOffset()} time={time} />
-        <Hour zoneName={zoneName} offset={getOffset()} gmt={getGMT()} />
+        <Timezone
+          zoneName={zoneName}
+          offset={getOffset(zoneName)}
+          time={time}
+        />
+        <Hour
+          zoneName={zoneName}
+          offset={getOffset()}
+          gmt={getGMT()}
+          setTime={setTime}
+        />
       </>
     )
   );

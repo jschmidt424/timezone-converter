@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SuggestionItem from "./SuggestionItem";
+import SuggestionItem from "./suggestionItem";
 
 function SuggestionList({ matchArray, value, addZone }) {
   let list = "";
