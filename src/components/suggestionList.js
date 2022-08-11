@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SuggestionItem from "./suggestionItem";
 
 function SuggestionList({ matchArray, value, addZone }) {
@@ -6,7 +6,6 @@ function SuggestionList({ matchArray, value, addZone }) {
 
   if (matchArray && matchArray.length > 0) {
     list = matchArray.map((data, i) => {
-      const regex = new RegExp(value, "gi");
       return <SuggestionItem data={data} key={i} addZone={addZone} />;
     });
   }

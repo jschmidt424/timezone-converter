@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import "./App.css";
-import Search from "./components/search";
-import TimezoneGroup from "./components/timezoneGroup";
-import moment from "moment-timezone";
+import Search from "./components/Search";
+import TimezoneGroup from "./components/TimezoneGroup";
 
 function App() {
   const [zoneName, setZoneName] = useState([]);
@@ -10,7 +8,6 @@ function App() {
 
   const addZone = (data) => {
     const cityName = data.replace(" ", "_");
-    // let newArray = zoneName;
     const stringZoneName = cityName
       .split("/")
       .map((data) => data[0].toUpperCase() + data.substr(1).toLowerCase())
@@ -18,13 +15,11 @@ function App() {
     setZoneName([...zoneName, stringZoneName]);
     setInputValue("");
   };
-
   const deleteZone = (index) => {
     let newArray = Array.from(zoneName);
     newArray.splice(index, 1);
     setZoneName(newArray);
   };
-
   return (
     <div className="wrapper">
       <h2>TIMEZONE CONVERTER</h2>
@@ -44,5 +39,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
