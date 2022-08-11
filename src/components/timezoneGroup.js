@@ -23,6 +23,7 @@ function TimezoneGroup(zoneName) {
     return difference;
   };
   console.log(getOffset());
+  console.log(zoneName);
 
   return (
     <>
