@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import moment from "moment-timezone";
 import SuggestionList from "./suggestionList";
 
-function Search(addZone) {
+function Search({ addZone, inputValue, setInputValue }) {
   const timeZoneDb = Object.keys(moment.tz._zones)
     .map((data) => data.replace("_", "/"))
     .map((data) => data.replace("_", " "));
@@ -36,7 +36,13 @@ function Search(addZone) {
         onChange={inputChange}
       />
       <input type="submit" name="search" value="search" />
-      <SuggestionList matchArray={matchValue} value={input} addZone={addZone} />
+      {inputValue && (
+        <SuggestionList
+          matchArray={matchValue}
+          value={inputValue}
+          addZone={addZone}
+        />
+      )}
     </div>
   );
 }
